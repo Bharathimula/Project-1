@@ -2,8 +2,6 @@
 
 ## Local Environment Setup
 
-<<<<<<< HEAD
-
 1.Clone the repository:
   git clone <repo-url>
   cd Task-2
@@ -16,33 +14,42 @@
   python app.py  # Adjust for v1.0, v1.1, or v2.0
   
 **Kubernetes Deployment**
-=======
-| Step | Command |
-|------|---------|
-| **1. Clone the repository** | `git clone https://github.com/Bharathimula/Task-2.git` <br> `cd Task-2` |
-| **2. Create & activate virtual environment** (Linux/macOS) | `python -m venv venv` <br> `source venv/bin/activate` |
-| **2. Create & activate virtual environment** (Windows) | `python -m venv venv` <br> `venv\Scripts\activate` |
-| **3. Install dependencies** | `pip install -r requirements.txt` |
-| **4. Run the application** | `python app.py` (for v1.0, v1.1, or v2.0) |
->>>>>>> 932438d (Updated README with structured Deployment & Monitoring details)
+
+1. Clone the repository
+   '''sh
+   git clone https://github.com/Bharathimula/Task-2.git
+   cd Task-2
+2. Install dependencies
+   '''sh
+   pip install -r requirements.txt
+3. Run the application
+   '''sh
+   python app.py` (for v1.0, v1.1, or v2.0) 
 
 
 # Kubernetes Deployment
 
 ## 1. Build and Push the Docker Image
 ```sh
-docker build -t myrepo/product-catalog:v1 .
-docker push myrepo/product-catalog:v1
 
-Repeat for other versions.
+docker build -t myrepo/product-catalog:v1.0 .
+docker push myrepo/product-catalog:v1.0
 
-2.Apply Kubernetes manifests:
+docker build -t myrepo/product-catalog:v1.1 .
+docker push myrepo/product-catalog:v1.1
+
+docker build -t myrepo/product-catalog:v2.0 .
+docker push myrepo/product-catalog:v2.0
+
+## 2. Apply Kubernetes manifests:
+'''sh
 
 kubectl apply -f deployment-v1.yml
 kubectl apply -f hpa.yml
 kubectl apply -f ingress.yml
 
 3.Verify deployment:
+'''sh
 
 kubectl get pods -n v1
 kubectl get services -n v1
